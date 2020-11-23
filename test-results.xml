@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="8.5350" tests="16" failures="0" skipped="6">
+  <testsuite name="Root Suite" timestamp="2020-11-23T22:10:17" tests="0" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="posts" timestamp="2020-11-23T22:10:17" tests="0" file="C:\Users\benna\Desktop\automation\super-api-tests\test\posts.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="POST" timestamp="2020-11-23T22:10:18" tests="2" file="C:\Users\benna\Desktop\automation\super-api-tests\test\posts.js" time="1.7190" failures="0">
+    <testcase name="posts POST /posts" time="0.8980" classname="/posts">
+    </testcase>
+    <testcase name="posts POST posts/:id" time="0.8210" classname="posts/:id">
+    </testcase>
+  </testsuite>
+  <testsuite name="Negative Tests" timestamp="2020-11-23T22:10:20" tests="2" file="C:\Users\benna\Desktop\automation\super-api-tests\test\posts.js" time="1.6660" failures="0">
+    <testcase name="posts Negative Tests 422 Data validation failed" time="0.8150" classname="422 Data validation failed">
+    </testcase>
+    <testcase name="posts Negative Tests 401 Authentication failed" time="0.8510" classname="401 Authentication failed">
+    </testcase>
+  </testsuite>
+  <testsuite name="Users" timestamp="2020-11-23T22:10:22" tests="0" file="C:\Users\benna\Desktop\automation\super-api-tests\test\users-optimized.js" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="GET" timestamp="2020-11-23T22:10:23" tests="3" file="C:\Users\benna\Desktop\automation\super-api-tests\test\users-optimized.js" time="2.5900" failures="0">
+    <testcase name="Users GET /users" time="0.9130" classname="/users">
+    </testcase>
+    <testcase name="Users GET /users/:id" time="0.8640" classname="/users/:id">
+    </testcase>
+    <testcase name="Users GET /users with query params" time="0.8130" classname="/users with query params">
+    </testcase>
+  </testsuite>
+  <testsuite name="POST" timestamp="2020-11-23T22:10:25" tests="1" file="C:\Users\benna\Desktop\automation\super-api-tests\test\users-optimized.js" time="0.8330" failures="0">
+    <testcase name="Users POST /users" time="0.8330" classname="/users">
+    </testcase>
+  </testsuite>
+  <testsuite name="PUT" timestamp="2020-11-23T22:10:26" tests="1" file="C:\Users\benna\Desktop\automation\super-api-tests\test\users-optimized.js" time="0.8430" failures="0">
+    <testcase name="Users PUT /users/:id" time="0.8430" classname="/users/:id">
+    </testcase>
+  </testsuite>
+  <testsuite name="DELETE" timestamp="2020-11-23T22:10:27" tests="1" file="C:\Users\benna\Desktop\automation\super-api-tests\test\users-optimized.js" time="0.8840" failures="0">
+    <testcase name="Users DELETE /users/:id" time="0.8840" classname="/users/:id">
+    </testcase>
+  </testsuite>
+  <testsuite name="Users" timestamp="2020-11-23T22:10:28" tests="6" file="C:\Users\benna\Desktop\automation\super-api-tests\test\users.js" time="0.0000" failures="0">
+  </testsuite>
+</testsuites>
