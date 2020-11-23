@@ -1,45 +1,43 @@
-import supertest from 'supertest';
-const request = supertest('https://gorest.co.in/public-api/');
+require('dotenv').config();
+import request from '../config/common';
 
 import { expect } from 'chai';
+import { createRandomNewUser } from '../helper/user';
+
+// const {
+//   createRandomNewUser: createRandomNewUser,
+// } = require('../helper/user');
 
 const TOKEN = process.env.USER_TOKEN;
 
 describe('Users', () => {
-  let userId;
+  let newUser, userId, newUserId;
 
-  describe('POST', () => {
-    it('/users', () => {
-      const data = {
-        email: `test-${Math.floor(Math.random() * 9999)}@mail.ca`,
-        name: 'Test name',
-        gender: 'Male',
-        status: 'Inactive',
-      };
+  before(async () => {
+    newUser = await createRandomNewUser();
+    newUserId = newUser.id;
+    console.log(newUser);
+  });
 
-      return request
-        .post('users')
-        .set('Authorization', `Bearer ${TOKEN}`)
-        .send(data)
-        .then((res) => {
-          expect(res.body.data).to.deep.include(data);
-          userId = res.body.data.id;
-        });
-    });
+  after(() => {
+    //clean up
+    // delete a user
   });
 
   describe('GET', () => {
     it('/users', () => {
-      return request.get(`users?access-token=${TOKEN}`).then((res) => {
+      return request
+      .get(`users?access-token=${TOKEN}`)
+      .then((res) => {
         expect(res.body.data).to.not.be.empty;
       });
     });
 
     it('/users/:id', () => {
       return request
-        .get(`users/${userId}?access-token=${TOKEN}`)
+        .get(`users/${newUserId}?access-token=${TOKEN}`)
         .then((res) => {
-          expect(res.body.data.id).to.be.eq(userId);
+          expect(res.body.data.id).to.be.eq(newUserId);
         });
     });
 
@@ -56,11 +54,32 @@ describe('Users', () => {
     });
   });
 
+  describe('POST', () => {
+    it('/users', () => {
+      const data = {
+        email: `test-${Math.floor(Math.random() * 9999)}@mail.ca`,
+        name: 'Test name',
+        gender: 'Male',
+        status: 'Inactive',
+      };
+
+      return request
+        .post('users')
+        .set('Authorization', `Bearer ${TOKEN}`)
+        .send(data)
+        .then((res) => {
+          console.log(res.body)
+          expect(res.body.data).to.deep.include(data);
+          userId = res.body.data.id;
+        });
+    });
+  });
+
   describe('PUT', () => {
     it('/users/:id', () => {
       const data = {
         status: 'Active',
-        name: `Luffy - ${Math.floor(Math.random() * 9999)}`,
+        name: `Benji - ${Math.floor(Math.random() * 9999)}`,
       };
 
       return request
@@ -68,6 +87,7 @@ describe('Users', () => {
         .set('Authorization', `Bearer ${TOKEN}`)
         .send(data)
         .then((res) => {
+          console.log(res.body)
           expect(res.body.data).to.deep.include(data);
         });
     });
@@ -83,4 +103,5 @@ describe('Users', () => {
         });
     });
   });
+
 });

@@ -1,22 +1,17 @@
 require('dotenv').config();
 const faker = require('faker');
 
-import request from '../config/supertest';
+import request from '../config/common';
 import { expect } from 'chai';
-
-const {
-  createRandomUser,
-  createRandomUserWithFaker,
-} = require('../helper/user');
-
+import { createRandomNewUser } from '../helper/user';
 const TOKEN = process.env.USER_TOKEN;
 
-describe.only('Posts', () => {
-  let user, postId;
+describe('posts', () => {
+  let user, userId, postId;
 
   before(async () => {
-    // user = await createRandomUser();
-    user = await createRandomUserWithFaker();
+    user = await createRandomNewUser();
+    userId = user.id;
   });
 
   after(() => {
@@ -27,7 +22,7 @@ describe.only('Posts', () => {
   describe('POST', () => {
     it('/posts', async () => {
       const data = {
-        user_id: user.id,
+        user_id: userId,
         title: faker.lorem.sentence(),
         body: faker.lorem.paragraphs(),
       };
@@ -57,7 +52,7 @@ describe.only('Posts', () => {
   describe('Negative Tests', () => {
     it('422 Data validation failed', async () => {
       const data = {
-        user_id: user.id,
+        user_id: userId,
         title: '',
         body: faker.lorem.paragraphs(),
       };
@@ -73,12 +68,14 @@ describe.only('Posts', () => {
 
     it('401 Authentication failed', async () => {
       const data = {
-        user_id: user.id,
+        user_id: userId,
         title: faker.lorem.sentence(),
         body: faker.lorem.paragraphs(),
       };
 
-      const res = await request.post(`posts`).send(data);
+      const res = await request
+      .post(`posts`)
+      .send(data);
 
       expect(res.body.code).to.eq(401);
       expect(res.body.data.message).to.eq('Authentication failed');

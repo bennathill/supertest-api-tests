@@ -1,10 +1,9 @@
-const supertest = require('supertest');
-const request = supertest('https://gorest.co.in/public-api/');
+require('dotenv').config();
+import request from '../config/common';
 const faker = require('faker');
-
 const TOKEN = process.env.USER_TOKEN;
 
-export const createRandomUserWithFaker = async () => {
+export const createRandomNewUser = async () => {
   const data = {
     email: faker.internet.email(),
     name: faker.name.firstName(),

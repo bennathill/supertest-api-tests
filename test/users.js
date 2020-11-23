@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 const TOKEN = process.env.USER_TOKEN;
 
-describe('Users', () => {
+xdescribe('Users', () => {
   it('GET /users', () => {
     // request.get(`users?access-token=${TOKEN}`).end((err, res) => {
     //   expect(res.body.data).to.not.be.empty;
@@ -19,6 +19,7 @@ describe('Users', () => {
 
   it('GET /users/:id', () => {
     return request.get(`users/1?access-token=${TOKEN}`).then((res) => {
+      console.log(res.body)
       expect(res.body.data.id).to.be.eq(1);
     });
   });
